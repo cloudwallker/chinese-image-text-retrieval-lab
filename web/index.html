@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f4f7fb">
+  <title>图文检索 · 本地学习实验室</title>
+  <link rel="stylesheet" href="/styles.css">
+  <script src="/app.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">跳到主要内容</a>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <a class="brand" href="#retrieval" aria-label="图文检索学习实验室首页">
+        <span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 32 32"><path d="M6 7h14a5 5 0 0 1 5 5v13H11a5 5 0 0 1-5-5V7Z"/><path d="m10 20 5-6 4 4 3-3M11 11h.01"/></svg></span>
+        <span><strong>图文检索</strong><small>本地学习实验室</small></span>
+      </a>
+      <div class="sidebar-label">学习工作台</div>
+      <nav class="nav-list" aria-label="主要导航">
+        <button class="nav-item active" data-view="retrieval" aria-current="page"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 4.5 4.5"/></svg><span>图文检索</span><span class="nav-index">01</span></button>
+        <button class="nav-item" data-view="experiments"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 3h6M10 3v6l-5.4 9.2A2 2 0 0 0 6.3 21h11.4a2 2 0 0 0 1.7-2.8L14 9V3M8 14h8"/></svg><span>对照实验</span><span class="nav-index">02</span></button>
+        <button class="nav-item" data-view="notes"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 3h11l3 3v15H5V3ZM9 10h6M9 14h6M9 18h4M15 3v4h4"/></svg><span>学习笔记</span><span class="nav-index">03</span></button>
+      </nav>
+      <div class="sidebar-bottom">
+        <div class="local-card"><span class="local-icon" aria-hidden="true">⌘</span><div><strong>在这台电脑上运行</strong><p>CPU · 本地服务 · 无需训练</p></div></div>
+        <div class="side-status"><span class="status-dot" id="side-status-dot"></span><span id="side-status-text">正在连接本地服务</span></div>
+        <p class="sidebar-footnote">把检索结果变成可以验证的问题。</p>
+      </div>
+    </aside>
+
+    <main class="main" id="main">
+      <header class="topbar">
+        <div class="breadcrumb">学习工作台<span>/</span><strong id="view-title">图文检索</strong></div>
+        <span class="connection-pill" id="connection-pill"><span class="status-dot"></span><span id="connection-text">连接中</span></span>
+      </header>
+      <div class="page-content">
+        <div class="global-alert" id="global-alert" role="alert" hidden></div>
+
+        <section class="view" id="view-retrieval" aria-labelledby="retrieval-heading">
+          <div class="page-heading">
+            <div><div class="eyebrow"><span></span>从一句中文开始</div><h1 id="retrieval-heading">让文字，找到图像。</h1><p>观察模型如何理解颜色、物体与场景，再用对照实验检验你的判断。</p></div>
+            <div class="heading-meta"><span>CHINESE-CLIP</span><strong>RN50 <span> / CPU</span></strong></div>
+          </div>
+
+          <div class="retrieval-workspace">
+            <form class="panel search-panel" id="search-form">
+              <div class="panel-heading"><div><span class="step-marker">01</span><h2>描述你想找的画面</h2></div><span class="small-label">中文查询</span></div>
+              <label class="sr-only" for="query">检索描述</label>
+              <div class="query-box"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 4.5 4.5"/></svg><textarea id="query" name="query" rows="2" maxlength="300" placeholder="例如：一只红色的杯子，或 杯子，不要红色" required></textarea><span id="query-count">0 / 300</span></div>
+              <div class="query-examples"><span>试一试</span><button type="button" data-example="一只红色的杯子">红色杯子</button><button type="button" data-example="草地上的动物">草地上的动物</button><button type="button" data-example="杯子，不要红色">杯子，不要红色</button></div>
+              <p class="dataset-footnote">模型查询请用简短描述；超出模型长度会提示缩短，不会静默丢弃后面的条件。</p>
+              <fieldset class="method-fieldset"><legend>检索方法</legend><div class="method-options">
+                <label class="method-card"><input type="radio" name="method" value="caption" checked><span class="radio-mark"></span><span class="method-copy"><strong>人工描述基线</strong><small>按图片的中文描述匹配</small></span><span class="method-tag">基础</span></label>
+                <label class="method-card" id="method-clip-card"><input type="radio" name="method" value="clip"><span class="radio-mark"></span><span class="method-copy"><strong>原始图文相似度</strong><small>比较文字与图片的向量</small></span><span class="method-tag model-method-tag">需建库</span></label>
+                <label class="method-card" id="method-negative-card"><input type="radio" name="method" value="negative"><span class="radio-mark"></span><span class="method-copy"><strong>排除条件教学实验</strong><small>正向分数减去排除项分数</small></span><span class="method-tag model-method-tag">需建库</span></label>
+              </div></fieldset>
+              <div class="negative-control" id="negative-control" hidden><div><label for="negative-weight">排除权重 <output id="negative-weight-value" for="negative-weight">0.40</output></label><input type="range" id="negative-weight" min="0" max="1" step="0.05" value="0.4"></div><p>使用明确格式「杯子，不要红色」。权重越高，排除条件影响越大；这是启发式教学方法。</p></div>
+              <div class="search-footer"><fieldset class="top-k-fieldset"><legend>返回数量</legend><div class="segmented-control"><label><input type="radio" name="top_k" value="1"><span>Top 1</span></label><label><input type="radio" name="top_k" value="5" checked><span>Top 5</span></label><label><input type="radio" name="top_k" value="10"><span>Top 10</span></label></div></fieldset><button class="button button-primary search-button" type="submit" id="search-button"><span>开始检索</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h15m-6-6 6 6-6 6"/></svg></button></div>
+              <div class="form-error" id="search-error" role="alert" hidden></div>
+            </form>
+
+            <aside class="panel readiness-panel" aria-labelledby="readiness-heading">
+              <div class="panel-heading"><div><span class="step-marker mint">↗</span><h2 id="readiness-heading">本地运行状态</h2></div><span class="live-label"><i></i>实时</span></div>
+              <div class="readiness-status"><span class="readiness-icon" id="readiness-icon" aria-hidden="true">◇</span><div><strong id="readiness-title">正在读取状态</strong><span id="readiness-subtitle">状态来自本地服务</span></div></div>
+              <dl class="resource-list"><div><dt>演示图库</dt><dd id="gallery-count">—</dd></div><div><dt>模型</dt><dd id="model-status">—</dd></div><div><dt>图片向量缓存</dt><dd id="index-status">—</dd></div><div><dt>可用内存</dt><dd id="memory-status">—</dd></div></dl>
+              <div class="build-progress" id="build-progress" hidden><div><span id="build-task-label">正在构建图片向量</span><strong id="progress-value">0%</strong></div><progress id="progress-bar" max="1" value="0" aria-label="后台任务进度"></progress><small id="build-elapsed"></small></div>
+              <p class="status-message" id="status-message">图库和人工描述基线无需加载模型。模型检索需要先构建图片向量。</p>
+              <button class="button button-secondary prepare-button" id="prepare-button" type="button"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v6m0 0 3-3m-3 3L9 6M5 13v7h14v-7M8 16h8"/></svg><span>构建图片向量</span></button>
+              <p class="readiness-footnote">首次加载与建库可能需要几分钟。缺少依赖或权重时，下方会显示服务返回的修复提示。</p>
+              <div class="status-error" id="status-error" role="alert" hidden></div>
+            </aside>
+          </div>
+
+          <section class="results-section" aria-labelledby="results-heading">
+            <div class="section-heading"><div><h2 id="results-heading">探索演示图库</h2><p id="results-description">查看图库中的实际图片及其来源。</p></div><div class="results-tools"><span class="result-badge" id="result-badge">加载中</span><button class="text-button" id="reset-gallery" type="button" hidden>返回图库</button></div></div>
+            <div class="parsed-query" id="parsed-query" hidden><span>查询解析</span><div><strong>正向描述</strong><span id="positive-query"></span></div><div><strong>排除条件</strong><span id="negative-query"></span></div></div>
+            <div class="result-context" id="result-context" hidden></div>
+            <div class="image-grid" id="image-grid" aria-live="polite" aria-busy="true"></div>
+            <div class="empty-state" id="gallery-empty" hidden><span class="empty-symbol" aria-hidden="true">▧</span><h3>还没有可浏览的图片</h3><p>图库加载后，实际图片会显示在这里。</p></div>
+            <div class="gallery-more"><button class="button button-quiet" id="show-all-gallery" type="button" hidden>查看完整图库</button></div>
+            <p class="dataset-footnote"><span aria-hidden="true">ⓘ</span> 自建教学图库，用于观察检索行为；不是论文标准基准。分数是检索分值，不表示概率或置信度。</p>
+          </section>
+        </section>
+
+        <section class="view" id="view-experiments" aria-labelledby="experiments-heading" hidden>
+          <div class="page-heading"><div><div class="eyebrow"><span></span>用证据比较方法</div><h1 id="experiments-heading">让结果，经得起比较。</h1><p>同一图库、同一组标注查询，观察三种方法的命中、召回与排序表现。</p></div><span class="heading-number">02 / EXPERIMENT</span></div>
+          <div class="panel experiment-setup"><div class="experiment-intro"><span class="step-marker">02</span><div><h2>运行对照评估</h2><p>只计算当前可运行的方法。图片向量缓存未就绪时，仅评估人工描述基线，并在报告中说明。</p></div></div><form id="evaluate-form"><div class="evaluation-config"><label for="evaluation-split">查询划分<select id="evaluation-split"><option value="test">测试集 · test</option><option value="validation">验证集 · validation</option></select></label><label for="evaluation-weight">排除权重<input id="evaluation-weight" type="number" min="0" max="1" step="0.05" value="0.4"></label></div><button type="submit" id="evaluate-button" class="button button-primary"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m8 5 11 7-11 7V5Z"/></svg><span>运行实验</span></button></form><div class="form-error" id="evaluate-error" role="alert" hidden></div><p class="experiment-progress" id="experiment-progress" aria-live="polite" hidden></p></div>
+          <div class="empty-state report-empty" id="report-empty"><span class="empty-symbol" aria-hidden="true">▥</span><h3>第一份报告，从一次实验开始</h3><p>运行评估后，这里会显示真实指标、逐类结果和未命中查询。</p><small>Hit@K 看是否命中，Recall@K 看找回多少正例，mAP@K 看排序质量。</small></div>
+          <div id="report-content" hidden>
+            <div class="section-heading report-heading"><div><h2>实验报告</h2><p id="report-time"></p></div><div class="export-actions"><button type="button" class="button button-quiet" id="export-json">导出 JSON</button><button type="button" class="button button-quiet" id="export-report-md">导出 Markdown</button></div></div>
+            <div class="report-warnings" id="report-warnings" hidden></div>
+            <div class="report-overview" id="report-overview"></div>
+            <div class="panel metrics-panel"><div class="panel-heading"><div><span class="step-marker">↔</span><h2>方法对比</h2></div><span class="small-label">指标来自实际查询</span></div><div class="table-scroll"><table class="metrics-table"><thead><tr><th scope="col">检索方法</th><th scope="col">Hit@1</th><th scope="col">Hit@5</th><th scope="col">Recall@5</th><th scope="col">mAP@5</th><th scope="col">耗时</th></tr></thead><tbody id="metrics-body"></tbody></table></div><div class="metric-guide"><p><strong>Hit@K</strong> 前 K 项中至少命中一个正例的查询比例。</p><p><strong>Recall@K</strong> 前 K 项覆盖的正例比例，支持多个正例。</p><p><strong>mAP@K</strong> 考虑正例排名的平均检索质量。</p></div></div>
+            <div class="analysis-layout"><div class="panel comparison-panel"><div class="panel-heading"><div><h2>前五项命中表现</h2></div><span class="small-label">Hit@5</span></div><div id="comparison-bars" class="comparison-bars"></div><p class="analysis-note">指标只描述此教学图库与当前查询划分，不代表通用场景表现。</p></div><div class="panel category-panel"><div class="panel-heading"><div><h2>按查询类型查看</h2></div><label class="sr-only" for="report-method">报告方法</label><select id="report-method"></select></div><div class="table-scroll"><table class="category-table"><thead><tr><th>查询类型</th><th>数量</th><th>Hit@5</th><th>Recall@5</th></tr></thead><tbody id="categories-body"></tbody></table></div></div></div>
+            <section class="failure-section"><div class="section-heading"><div><h2>从首项失败中学习</h2><p>查看所选方法首项未命中的查询；前五项也可能含正确答案。</p></div><span class="result-badge" id="failure-count"></span></div><div id="failure-list" class="failure-list"></div></section>
+          </div>
+        </section>
+
+        <section class="view" id="view-notes" aria-labelledby="notes-heading" hidden>
+          <div class="page-heading"><div><div class="eyebrow"><span></span>把观察变成下一步</div><h1 id="notes-heading">留下你的思考路径。</h1><p>记录问题、假设与证据。好的学习笔记，不止写下一个分数。</p></div><span class="heading-number">03 / LEARNING</span></div>
+          <div class="notes-layout"><section class="panel notes-editor"><div class="panel-heading"><div><span class="step-marker">03</span><h2>我的学习笔记</h2></div><span class="small-label">Markdown · 纯文本</span></div><label for="notes-content" class="sr-only">学习笔记内容</label><textarea id="notes-content" maxlength="30000" spellcheck="false" placeholder="## 问题&#10;我想验证什么？&#10;&#10;## 假设&#10;为什么可能出现这样的结果？&#10;&#10;## 观察&#10;记录实际运行后的证据与反例。&#10;&#10;## 下一步&#10;下次改变哪个条件，如何验证？"></textarea><div class="notes-footer"><span id="notes-save-status" aria-live="polite">正在读取已保存笔记</span><div><button class="button button-quiet" type="button" id="export-notes">导出 .md</button><button class="button button-primary" type="button" id="save-notes">保存笔记</button></div></div><div class="form-error" id="notes-error" role="alert" hidden></div></section><aside class="notes-guide"><div class="panel"><span class="guide-icon" aria-hidden="true">✎</span><h2>从一个小问题开始</h2><p>模板是一组提示，不是已经完成的学习记录。用你实际观察到的结果填充它。</p><button class="text-button" id="insert-template" type="button">插入空白思考模板 <span aria-hidden="true">↗</span></button></div><div class="thinking-prompts"><h3>可以追问的方向</h3><div><span>01</span><p>基线命中时，模型是否也能命中？是依靠物体、颜色，还是描述中的词？</p></div><div><span>02</span><p>加入「不要」后，排除项排名如何变化？改变权重是否影响其他正确结果？</p></div><div><span>03</span><p>哪些失败来自图片内容，哪些来自查询表达或正例标注？</p></div></div><p class="notes-privacy"><span aria-hidden="true">⌂</span> 笔记由本地服务保存。网页不会将内容发送到第三方。</p></aside></div>
+        </section>
+        <footer class="page-footer"><span>本地中文图文检索学习实验室</span><span>观察 → 假设 → 实验 → 记录</span></footer>
+      </div>
+    </main>
+  </div>
+  <div class="toast" id="toast" role="status" hidden></div>
+</body>
+</html>

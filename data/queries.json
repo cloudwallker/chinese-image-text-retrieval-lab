@@ -1,0 +1,370 @@
+{
+  "version": "manual-queries-v1",
+  "queries": [
+    {
+      "id": "q01",
+      "text": "花瓶",
+      "relevant_ids": [
+        "met_202191",
+        "met_205482",
+        "met_232384",
+        "met_200873",
+        "met_13528",
+        "met_14318",
+        "met_14319"
+      ],
+      "category": "object",
+      "split": "validation"
+    },
+    {
+      "id": "q02",
+      "text": "杯子",
+      "relevant_ids": [
+        "met_16297",
+        "met_185842",
+        "met_185879",
+        "met_185912",
+        "met_185946",
+        "met_185978",
+        "met_185998"
+      ],
+      "category": "object",
+      "split": "test"
+    },
+    {
+      "id": "q03",
+      "text": "椅子",
+      "relevant_ids": [
+        "met_14430",
+        "met_14984",
+        "met_1648",
+        "met_1658",
+        "met_1659",
+        "met_1660",
+        "met_1672"
+      ],
+      "category": "object",
+      "split": "validation"
+    },
+    {
+      "id": "q04",
+      "text": "鸟",
+      "relevant_ids": [
+        "met_193515",
+        "met_203391",
+        "met_206132",
+        "met_206590",
+        "met_36043",
+        "met_37516",
+        "met_394043"
+      ],
+      "category": "object",
+      "split": "test"
+    },
+    {
+      "id": "q05",
+      "text": "船",
+      "relevant_ids": [
+        "met_43224",
+        "met_365877"
+      ],
+      "category": "object",
+      "split": "validation"
+    },
+    {
+      "id": "q06",
+      "text": "钟表",
+      "relevant_ids": [
+        "met_14298",
+        "met_14696",
+        "met_191994",
+        "met_193610",
+        "met_195469",
+        "met_195491",
+        "met_196389"
+      ],
+      "category": "object",
+      "split": "test"
+    },
+    {
+      "id": "q07",
+      "text": "猫",
+      "relevant_ids": [
+        "met_191965",
+        "met_197494",
+        "met_197495",
+        "met_197496",
+        "met_199447",
+        "met_203392",
+        "met_545971"
+      ],
+      "category": "object",
+      "split": "validation"
+    },
+    {
+      "id": "q08",
+      "text": "花卉绘画",
+      "relevant_ids": [
+        "met_394043",
+        "met_337713",
+        "met_436026"
+      ],
+      "category": "object",
+      "split": "test"
+    },
+    {
+      "id": "q09",
+      "text": "绿色花瓶",
+      "relevant_ids": [
+        "met_205482"
+      ],
+      "category": "attribute",
+      "split": "validation"
+    },
+    {
+      "id": "q10",
+      "text": "蓝色花瓶",
+      "relevant_ids": [
+        "met_202191",
+        "met_200873",
+        "met_13528"
+      ],
+      "category": "attribute",
+      "split": "test"
+    },
+    {
+      "id": "q11",
+      "text": "粉色花瓶",
+      "relevant_ids": [
+        "met_232384"
+      ],
+      "category": "attribute",
+      "split": "validation"
+    },
+    {
+      "id": "q12",
+      "text": "带两个把手的花瓶",
+      "relevant_ids": [
+        "met_13528",
+        "met_14318",
+        "met_14319"
+      ],
+      "category": "attribute",
+      "split": "test"
+    },
+    {
+      "id": "q13",
+      "text": "蓝色茶杯和碟子",
+      "relevant_ids": [
+        "met_16297"
+      ],
+      "category": "attribute",
+      "split": "validation"
+    },
+    {
+      "id": "q14",
+      "text": "白色双耳杯",
+      "relevant_ids": [
+        "met_185912"
+      ],
+      "category": "attribute",
+      "split": "test"
+    },
+    {
+      "id": "q15",
+      "text": "透明高脚杯",
+      "relevant_ids": [
+        "met_185998"
+      ],
+      "category": "attribute",
+      "split": "validation"
+    },
+    {
+      "id": "q16",
+      "text": "绿色坐垫的椅子",
+      "relevant_ids": [
+        "met_1658"
+      ],
+      "category": "attribute",
+      "split": "test"
+    },
+    {
+      "id": "q17",
+      "text": "空座框的椅子",
+      "relevant_ids": [
+        "met_1660"
+      ],
+      "category": "attribute",
+      "split": "validation"
+    },
+    {
+      "id": "q18",
+      "text": "纯白色鸟雕塑",
+      "relevant_ids": [
+        "met_206132"
+      ],
+      "category": "attribute",
+      "split": "test"
+    },
+    {
+      "id": "q19",
+      "text": "棕色猫雕塑",
+      "relevant_ids": [
+        "met_199447",
+        "met_545971"
+      ],
+      "category": "attribute",
+      "split": "validation"
+    },
+    {
+      "id": "q20",
+      "text": "带人物雕像的钟表",
+      "relevant_ids": [
+        "met_191994",
+        "met_193610",
+        "met_195469",
+        "met_195491"
+      ],
+      "category": "attribute",
+      "split": "test"
+    },
+    {
+      "id": "q21",
+      "text": "花瓶，不要蓝色",
+      "relevant_ids": [
+        "met_205482",
+        "met_232384",
+        "met_14318",
+        "met_14319"
+      ],
+      "category": "negative",
+      "split": "validation"
+    },
+    {
+      "id": "q22",
+      "text": "花瓶，不要把手",
+      "relevant_ids": [
+        "met_202191",
+        "met_205482",
+        "met_232384",
+        "met_200873"
+      ],
+      "category": "negative",
+      "split": "test"
+    },
+    {
+      "id": "q23",
+      "text": "杯子，不要把手",
+      "relevant_ids": [
+        "met_185879",
+        "met_185946",
+        "met_185978"
+      ],
+      "category": "negative",
+      "split": "validation"
+    },
+    {
+      "id": "q24",
+      "text": "杯子，不要碟子",
+      "relevant_ids": [
+        "met_185842",
+        "met_185879",
+        "met_185912",
+        "met_185946",
+        "met_185978",
+        "met_185998"
+      ],
+      "category": "negative",
+      "split": "test"
+    },
+    {
+      "id": "q25",
+      "text": "椅子，不要绿色",
+      "relevant_ids": [
+        "met_14430",
+        "met_14984",
+        "met_1648",
+        "met_1659",
+        "met_1660",
+        "met_1672"
+      ],
+      "category": "negative",
+      "split": "validation"
+    },
+    {
+      "id": "q26",
+      "text": "椅子，不要坐垫",
+      "relevant_ids": [
+        "met_1648",
+        "met_1660"
+      ],
+      "category": "negative",
+      "split": "test"
+    },
+    {
+      "id": "q27",
+      "text": "鸟，不要绘画",
+      "relevant_ids": [
+        "met_193515",
+        "met_203391",
+        "met_206132",
+        "met_206590",
+        "met_37516"
+      ],
+      "category": "negative",
+      "split": "validation"
+    },
+    {
+      "id": "q28",
+      "text": "鸟，不要雕塑",
+      "relevant_ids": [
+        "met_36043",
+        "met_394043"
+      ],
+      "category": "negative",
+      "split": "test"
+    },
+    {
+      "id": "q29",
+      "text": "猫，不要蓝色",
+      "relevant_ids": [
+        "met_191965",
+        "met_197495",
+        "met_199447",
+        "met_203392",
+        "met_545971"
+      ],
+      "category": "negative",
+      "split": "validation"
+    },
+    {
+      "id": "q30",
+      "text": "猫，不要花纹",
+      "relevant_ids": [
+        "met_545971"
+      ],
+      "category": "negative",
+      "split": "test"
+    },
+    {
+      "id": "q31",
+      "text": "钟表，不要人物",
+      "relevant_ids": [
+        "met_14298",
+        "met_14696",
+        "met_196389"
+      ],
+      "category": "negative",
+      "split": "validation"
+    },
+    {
+      "id": "q32",
+      "text": "船，不要绘画",
+      "relevant_ids": [
+        "met_43224"
+      ],
+      "category": "negative",
+      "split": "test"
+    }
+  ]
+}
