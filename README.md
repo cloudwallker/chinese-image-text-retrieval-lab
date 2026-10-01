@@ -12,6 +12,8 @@ English | [中文](README_ZH.md)
 
 *Evaluation chart from the recorded CPU experiment: 48 images, 16 test queries, and exclusion weight 0.4. This is a results chart, not a screenshot of the web interface.*
 
+![chinese-image-text-retrieval-lab](docs/images/cartoon-infographic.png)
+
 ## What you can do
 
 - Search with Chinese descriptions using pretrained Chinese-CLIP RN50 on CPU.

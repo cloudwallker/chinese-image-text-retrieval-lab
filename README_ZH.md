@@ -12,6 +12,8 @@
 
 *来自已记录 CPU 实验的指标图：48 张图片、16 条测试查询、排除权重 0.4。这是实验结果图，不是网页界面截图。*
 
+![chinese-image-text-retrieval-lab](docs/images/cartoon-infographic.png)
+
 ## 可以做什么
 
 - 使用预训练 Chinese-CLIP RN50，在 CPU 上用中文描述检索图片。
